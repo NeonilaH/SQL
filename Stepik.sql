@@ -132,6 +132,15 @@ SELECT title, author, amount,
 FROM book
 WHERE ABS(amount - (SELECT MAX(amount) FROM book)) !=0;
 
+-- 1.5
+
+CREATE TABLE supply (
+    supply_id INT PRIMARY KEY AUTO_INCREMENT,
+    title VARCHAR(50),
+    author VARCHAR(30),
+    price DECIMAL(8, 2),
+    amount INT);
+
 INSERT INTO supply (title, author, price, amount)
 VALUES 
     ("Лирика", "Пастернак Б.Л.", 518.99, 2),
@@ -143,7 +152,7 @@ INSERT INTO book (title, author, price, amount)
     SELECT title, author, price, amount 
     FROM supply
     WHERE author NOT IN ("Булгаков М.А.", "Достоевский Ф.М.");
-    
+
 INSERT INTO book (title, author, price, amount) 
 SELECT title, author, price, amount 
 FROM supply
@@ -159,4 +168,3 @@ WHERE amount BETWEEN 5 and 10;
 UPDATE book
 SET buy = IF(buy > amount, amount, buy),
     price = IF(buy = 0, price * 0.9, price);
-    
