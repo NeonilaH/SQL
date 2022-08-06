@@ -118,3 +118,17 @@ WHERE amount IN (
     GROUP BY amount
     HAVING COUNT(amount) = 1
     );
+
+SELECT author, title, price
+FROM book
+WHERE price < ANY (
+        SELECT MIN(price) 
+        FROM book 
+        GROUP BY author 
+      );
+
+SELECT title, author, amount,
+         ABS(amount - (SELECT MAX(amount) FROM book)) AS Заказ
+FROM book
+WHERE ABS(amount - (SELECT MAX(amount) FROM book)) !=0;
+
