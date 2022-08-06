@@ -155,3 +155,8 @@ WHERE author NOT IN (
 UPDATE book
 SET price = price * 0.9
 WHERE amount BETWEEN 5 and 10;
+
+UPDATE book
+SET buy = IF(buy > amount, amount, buy),
+    price = IF(buy = 0, price * 0.9, price);
+    
