@@ -139,3 +139,8 @@ VALUES
     ("Белая гвардия", "Булгаков М.А.", 540.50, 7),
     ("Идиот", "Достоевский Ф.М.", 360.80, 3);
 
+INSERT INTO book (title, author, price, amount) 
+    SELECT title, author, price, amount 
+    FROM supply
+    WHERE author NOT IN ("Булгаков М.А.", "Достоевский Ф.М.");
+    
