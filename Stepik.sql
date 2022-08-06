@@ -151,3 +151,7 @@ WHERE author NOT IN (
         SELECT author 
         FROM book
       );
+
+UPDATE book
+SET price = price * 0.9
+WHERE amount BETWEEN 5 and 10;
