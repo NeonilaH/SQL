@@ -180,3 +180,9 @@ WHERE author IN(
     FROM book
     GROUP BY author
     HAVING SUM(amount) > 10);
+
+CREATE TABLE ordering AS 
+SELECT author, title,
+    (SELECT ROUND(AVG(amount)) FROM book) AS amount
+    FROM book
+    WHERE amount < (SELECT AVG(amount) FROM book);
