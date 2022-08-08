@@ -63,8 +63,8 @@ SELECT * FROM bank.Client WHERE Age < 25 AND Passport LIKE "___5%";
 SELECT * FROM bank.Client ORDER BY age ASC;
 SELECT * FROM bank.Client WHERE city = "Kyiv" ORDER BY lastname DESC;
 SELECT * FROM bank.Client ORDER BY age DESC LIMIT 3;
-SELECT * FROM bank.Client WHERE age = (SELECT min(age) FROM bank.client);
-SELECT * FROM bank.Client WHERE age > (SELECT avg(age) FROM bank.Client);
+SELECT * FROM bank.Client WHERE age = (SELECT MIN(age) FROM bank.client);
+SELECT * FROM bank.Client WHERE age > (SELECT AVG(age) FROM bank.Client);
 
 5. Необхідно написати розв’язок до наступних завдань (всі вони до БД Bank):
 — Вивести імена клієнтів та їхні паспортні данні, погрупувавши їх за іменами.
