@@ -186,6 +186,8 @@ SELECT author, title,
     (SELECT ROUND(AVG(amount)) FROM book) AS amount
     FROM book
     WHERE amount < (SELECT AVG(amount) FROM book);
+
+-- 1.6
     
 SELECT name, city, per_diem, date_first, date_last
 FROM trip
