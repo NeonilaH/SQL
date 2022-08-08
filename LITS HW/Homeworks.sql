@@ -50,7 +50,7 @@ SELECT * FROM bank.Client WHERE age >= "29" AND age <= "30" AND NOT Department_i
 SELECT * FROM bank.Client WHERE Department_idDepartment IN ("1", "2", "4");
 SELECT * FROM bank.Client WHERE Age NOT BETWEEN 30 AND 35;
 SELECT * FROM bank.Client WHERE LastName LIKE "%iv";
-SELECT * FROM bank.Client WHERE LastName regexp "iv";
+SELECT * FROM bank.Client WHERE LastName REGEXP "iv";
 SELECT * FROM bank.Client WHERE Age < 25 AND Passport LIKE "___5%";
 
 4. Необхідно написати розв’язок до наступних завдань (всі вони до БД Bank):
