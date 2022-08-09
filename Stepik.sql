@@ -268,3 +268,29 @@ GROUP BY name, number_plate, violation
 HAVING COUNT(name) AND COUNT(number_plate) AND COUNT(violation) >=2 
         --HAVING COUNT(*)>=2 - alternatively
 ORDER BY 1, 2, 3;
+
+UPDATE fine f, (SELECT name, number_plate, violation
+        FROM fine
+        GROUP BY name, number_plate, violation
+        HAVING COUNT(*)>=2) q
+SET f.sum_fine = f.sum_fine * 2
+WHERE f.date_payment IS NULL AND 
+    f.name = q.name AND 
+    f.number_plate = q.number_plate AND 
+    f.violation = q.violation;
+
+UPDATE fine f, payment p
+SET f.date_payment = p.date_payment,
+    f.sum_fine = IF (DATEDIFF(p.date_payment, p.date_violation) <= 20, f.sum_fine/2, f.sum_fine)
+WHERE f.date_payment IS NULL AND 
+        f.name = p.name AND
+        f.number_plate = p.number_plate AND
+        f.violation = p.violation;
+
+CREATE TABLE back_payment AS 
+SELECT name, number_plate, violation, sum_fine, date_violation 
+FROM fine
+WHERE date_payment IS NULL;
+
+DELETE FROM fine
+WHERE date_violation < "2020-02-01";
