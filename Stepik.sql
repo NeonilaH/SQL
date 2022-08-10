@@ -366,3 +366,16 @@ INNER JOIN author ON author.author_id = book.author_id
 INNER JOIN genre ON genre.genre_id = book.genre_id
 WHERE genre.name_genre LIKE "роман"
 ORDER BY 2;
+
+SELECT name_author, SUM(amount) AS Количество
+FROM book
+    RIGHT JOIN author ON book.author_id = author.author_id
+GROUP BY name_author
+HAVING SUM(amount) < 10 OR SUM(amount) IS NULL
+ORDER BY 2;
+
+SELECT name_author
+FROM book
+    INNER JOIN  author ON author.author_id  = book.author_id
+GROUP BY name_author 
+HAVING COUNT(DISTINCT book.genre_id) = 1; 
