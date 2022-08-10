@@ -339,3 +339,30 @@ VALUES ('Стихотворения и поэмы',3, 2, 650.00, 15),
 
 -- 2.2
 
+SELECT title, name_genre, price
+FROM book 
+    INNER JOIN genre
+    ON book.genre_id = genre.genre_id
+WHERE amount > 8
+ORDER BY price DESC;
+
+SELECT name_genre
+FROM genre LEFT JOIN book
+    ON genre.genre_id = book.genre_id
+WHERE book.genre_id IS NULL;
+                --SELECT name_genre
+                --FROM book RIGHT JOIN genre
+                --   ON genre.genre_id = book.genre_id
+                --WHERE book.genre_id IS NULL;
+
+SELECT city.name_city, author.name_author, 
+    (DATE_ADD('2020-01-01', INTERVAL FLOOR(RAND() * 365) DAY)) as Дата
+FROM city CROSS JOIN author     --FROM city, author --alternatively
+ORDER BY 1, 3 DESC;
+
+SELECT name_genre, title, name_author
+FROM book 
+INNER JOIN author ON author.author_id = book.author_id
+INNER JOIN genre ON genre.genre_id = book.genre_id
+WHERE genre.name_genre LIKE "роман"
+ORDER BY 2;
