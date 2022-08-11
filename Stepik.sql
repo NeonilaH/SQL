@@ -393,11 +393,10 @@ WHERE book.genre_id IN (
               GROUP BY genre_id
               LIMIT 1
            ))
-ORDER BY title
+ORDER BY title;
       
 SELECT b.title AS Название, name_author AS Автор, b.amount + s.amount AS Количество
 FROM book b
     INNER JOIN author a USING(author_id)
     INNER JOIN supply s ON a.name_author = s.author
-    WHERE b.title = s.title AND b.price = s.price
-    ;
+    WHERE b.title = s.title AND b.price = s.price;
