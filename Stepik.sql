@@ -460,3 +460,18 @@ USING author
      INNER JOIN book ON author.author_id = book.author_id
      INNER JOIN genre ON genre.genre_id = book.genre_id     
 WHERE name_genre = 'Поэзия';
+
+SELECT buy_book.buy_id, book.title, book.price, buy_book.amount
+FROM buy_book
+    INNER JOIN book ON buy_book.book_id = book.book_id
+    INNER JOIN buy ON buy_book.buy_id = buy.buy_id
+    INNER JOIN client ON client.client_id = buy.client_id
+WHERE client.name_client = "Баранов Павел"
+ORDER BY 1, 2;
+
+SELECT author.name_author, book.title, COUNT(buy_book.amount) AS Количество
+FROM book
+    INNER JOIN author ON author.author_id = book.author_id
+    LEFT JOIN buy_book ON buy_book.book_id = book.book_id
+GROUP BY book.title, name_author
+ORDER BY name_author, title;
