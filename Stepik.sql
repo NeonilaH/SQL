@@ -400,3 +400,42 @@ FROM book b
     INNER JOIN author a USING(author_id)
     INNER JOIN supply s ON a.name_author = s.author
     WHERE b.title = s.title AND b.price = s.price;
+
+UPDATE book b
+    INNER JOIN author a ON b.author_id = a.author_id
+    INNER JOIN supply s ON s.title = b.title AND a.name_author = s.author 
+SET 
+    b.price = (b.price * b.amount + s.price * s.amount) / (b.amount + s.amount),
+    b.amount = b.amount + s.amount,
+    s.amount = 0
+WHERE b.price != s.price;
+
+INSERT INTO author (name_author)
+SELECT supply.author
+FROM author 
+    RIGHT JOIN supply on author.name_author = supply.author
+WHERE name_author IS Null;
+SELECT * FROM author;
+
+INSERT INTO book (title, author_id, price, amount)
+SELECT title, author_id, price, amount
+FROM author 
+    INNER JOIN supply ON author.name_author = supply.author
+WHERE amount <> 0;
+SELECT * FROM book;
+
+UPDATE book
+SET genre_id = (
+       SELECT genre_id 
+       FROM genre 
+       WHERE name_genre = "Поэзия"
+      )
+WHERE title = "Стихотворения и поэмы";
+UPDATE book
+SET genre_id = (
+       SELECT genre_id 
+       FROM genre 
+       WHERE name_genre = "Приключения"
+      )
+WHERE title = "Остров сокровищ";
+SELECT * FROM book;
