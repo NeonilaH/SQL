@@ -454,3 +454,9 @@ WHERE genre_id IN (
     FROM book
     GROUP BY genre_id
     HAVING COUNT(book_id) < 4);
+
+DELETE FROM author
+USING author
+     INNER JOIN book ON author.author_id = book.author_id
+     INNER JOIN genre ON genre.genre_id = book.genre_id     
+WHERE name_genre = 'Поэзия';
