@@ -447,3 +447,10 @@ WHERE author_id IN(
             GROUP BY author_id
             HAVING SUM(amount) < 20
             );
+
+DELETE FROM genre
+WHERE genre_id IN (
+    SELECT genre_id
+    FROM book
+    GROUP BY genre_id
+    HAVING COUNT(book_id) < 4);
