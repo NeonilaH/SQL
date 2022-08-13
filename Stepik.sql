@@ -5,8 +5,7 @@ CREATE TABLE book(
     title VARCHAR(50),
     author VARCHAR(30),
     price DECIMAL(8, 2),
-    amount INT
-);
+    amount INT);
 
 INSERT INTO book (book_id, title, author, price, amount) 
 VALUES (1, "Мастер и Маргарита", "Булгаков М.А.", 670.99, 3);
@@ -100,8 +99,7 @@ SELECT author, title, price
 FROM book
 WHERE price <= (
     SELECT AVG(price)
-    FROM book
-)
+    FROM book )
 ORDER by price DESC;
 
 SELECT author, title, price
@@ -115,16 +113,14 @@ WHERE amount IN (
     SELECT amount
     FROM book
     GROUP BY amount
-    HAVING COUNT(amount) = 1
-    );
+    HAVING COUNT(amount) = 1);
 
 SELECT author, title, price
 FROM book
 WHERE price < ANY (
         SELECT MIN(price) 
         FROM book 
-        GROUP BY author 
-      );
+        GROUP BY author);
 
 SELECT title, author, amount,
          ABS(amount - (SELECT MAX(amount) FROM book)) AS Заказ
@@ -157,8 +153,7 @@ SELECT title, author, price, amount
 FROM supply
 WHERE author NOT IN (
         SELECT author 
-        FROM book
-      );
+        FROM book);
 
 UPDATE book
 SET price = price * 0.9
@@ -250,8 +245,7 @@ CREATE TABLE fine (
     violation VARCHAR(50),
     sum_fine FLOAT(8,2),
     date_violation DATE,
-    date_payment DATE
-);
+    date_payment DATE);
 
 INSERT INTO fine (name, number_plate, violation, sum_fine, date_violation, date_payment)
     VALUES ("Баранов П.Е.", "Р523ВТ", "Превышение скорости(от 40 до 60)", NULL, "2020-02-14", NULL),
@@ -318,8 +312,7 @@ CREATE TABLE book (
     price DECIMAL(8,2), 
     amount INT, 
     FOREIGN KEY (author_id) REFERENCES author (author_id),
-    FOREIGN KEY (genre_id) REFERENCES genre (genre_id)
-    );
+    FOREIGN KEY (genre_id) REFERENCES genre (genre_id));
 
 CREATE TABLE book (
     book_id INT PRIMARY KEY AUTO_INCREMENT, 
@@ -329,8 +322,7 @@ CREATE TABLE book (
     price DECIMAL(8,2), 
     amount INT, 
     FOREIGN KEY (author_id) REFERENCES author (author_id) ON DELETE CASCADE,
-    FOREIGN KEY (genre_id) REFERENCES genre (genre_id) ON DELETE SET NULL
-    );
+    FOREIGN KEY (genre_id) REFERENCES genre (genre_id) ON DELETE SET NULL);
 
 INSERT INTO book (title, author_id, genre_id, price, amount)
 VALUES ('Стихотворения и поэмы',3, 2, 650.00, 15),
@@ -391,8 +383,7 @@ WHERE book.genre_id IN (
               SELECT SUM(amount)
               FROM book
               GROUP BY genre_id
-              LIMIT 1
-           ))
+              LIMIT 1))
 ORDER BY title;
       
 SELECT b.title AS Название, name_author AS Автор, b.amount + s.amount AS Количество
@@ -428,15 +419,13 @@ UPDATE book
 SET genre_id = (
        SELECT genre_id 
        FROM genre 
-       WHERE name_genre = "Поэзия"
-      )
+       WHERE name_genre = "Поэзия")
 WHERE title = "Стихотворения и поэмы";
 UPDATE book
 SET genre_id = (
        SELECT genre_id 
        FROM genre 
-       WHERE name_genre = "Приключения"
-      )
+       WHERE name_genre = "Приключения")
 WHERE title = "Остров сокровищ";
 SELECT * FROM book;
 
@@ -445,8 +434,7 @@ WHERE author_id IN(
             SELECT author_id
             FROM book
             GROUP BY author_id
-            HAVING SUM(amount) < 20
-            );
+            HAVING SUM(amount) < 20);
 
 DELETE FROM genre
 WHERE genre_id IN (
