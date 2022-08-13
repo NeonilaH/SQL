@@ -475,3 +475,31 @@ FROM book
     LEFT JOIN buy_book ON buy_book.book_id = book.book_id
 GROUP BY book.title, name_author
 ORDER BY name_author, title;
+
+SELECT name_city, COUNT(buy.buy_id) AS Количество
+FROM city
+    INNER JOIN client USING (city_id)
+    INNER JOIN buy USING (client_id) 
+GROUP BY name_city
+ORDER BY 2 DESC, 1;
+
+SELECT buy_step.buy_id, buy_step.date_step_end
+FROM buy_step
+WHERE date_step_end IS NOT NULL and step_id IN (
+    SELECT step_id
+    FROM step
+    WHERE name_step = "Оплата");
+
+SELECT buy.buy_id, client.name_client, SUM(buy_book.amount * book.price) AS Стоимость
+FROM buy
+    INNER JOIN client USING (client_id)
+    INNER JOIN buy_book USING (buy_id)
+    INNER JOIN book USING (book_id)
+GROUP BY buy.buy_id
+ORDER BY 1;
+
+SELECT buy_id, name_step
+FROM step 
+    INNER JOIN buy_step USING (step_id)
+WHERE date_step_beg IS NOT NULL AND date_step_end IS NULL
+ORDER BY 1;
