@@ -507,9 +507,9 @@ ORDER BY 1;
 SELECT buy_id, DATEDIFF(date_step_end, date_step_beg) AS Количество_дней, 
         IF (DATEDIFF(date_step_end, date_step_beg) > city.days_delivery, 
         DATEDIFF(date_step_end, date_step_beg) - city.days_delivery, 0) AS Опоздание
-    FROM buy_step
+FROM buy_step
     INNER JOIN step USING (step_id)
     INNER JOIN buy USING (buy_id)
     INNER JOIN client USING (client_id)
     INNER JOIN city USING (city_id)
-    WHERE step.name_step = "Транспортировка" and buy_step.date_step_end IS NOT NULL
+WHERE step.name_step = "Транспортировка" and buy_step.date_step_end IS NOT NULL;
