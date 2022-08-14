@@ -511,3 +511,31 @@ FROM client
 WHERE name_author LIKE "Достоевск%"
 ORDER BY 1;
 
+SELECT name_genre, SUM(buy_book.amount) AS Количество
+FROM genre
+    INNER JOIN book USING (genre_id)
+    INNER JOIN buy_book USING (book_id)
+WHERE book.genre_id IN (
+          SELECT genre_id
+          FROM book 
+          GROUP BY genre_id
+          HAVING SUM(amount) = (
+              SELECT SUM(amount)
+              FROM book
+              GROUP BY genre_id
+              LIMIT 1))
+GROUP BY genre_id;
+
+SELECT YEAR(date_step_end) AS Год, MONTHNAME (date_step_end) AS Месяц, SUM(book.price * buy_book.amount) AS Сумма
+FROM book 
+    INNER JOIN buy_book ON book.book_id = buy_book.book_id
+    INNER JOIN buy_step ON buy_book.buy_id = buy_step.buy_id
+    INNER JOIN step ON buy_step.step_id = step.step_id
+WHERE date_step_end IS NOT NULL AND name_step = "Оплата"
+GROUP BY 2, 1
+UNION
+SELECT YEAR(date_payment) AS Год, MONTHNAME (date_payment) AS Месяц, SUM(buy_archive.price * buy_archive.amount) AS Сумма
+FROM buy_archive
+WHERE date_payment IS NOT NULL
+GROUP BY 2, 1
+ORDER BY 2, 1;
