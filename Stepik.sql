@@ -541,8 +541,8 @@ GROUP BY 2, 1
 ORDER BY 2, 1;
 
 SELECT title, SUM(Quantity) AS Количество, SUM(Total) AS Сумма
-FROM
-    (SELECT b.title, SUM(bb.amount) AS Quantity, SUM(b.price * bb.amount) AS Total
+FROM (
+    SELECT b.title, SUM(bb.amount) AS Quantity, SUM(b.price * bb.amount) AS Total
     FROM book b
         INNER JOIN buy_book bb USING (book_id)
         INNER JOIN buy_step bs USING (buy_id)
