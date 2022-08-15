@@ -539,3 +539,20 @@ FROM buy_archive
 WHERE date_payment IS NOT NULL
 GROUP BY 2, 1
 ORDER BY 2, 1;
+
+SELECT title, SUM(Quantity) AS Количество, SUM(Total) AS Сумма
+FROM
+    (SELECT b.title, SUM(bb.amount) AS Quantity, SUM(b.price * bb.amount) AS Total
+    FROM book b
+        INNER JOIN buy_book bb USING (book_id)
+        INNER JOIN buy_step bs USING (buy_id)
+        INNER JOIN step s USING (step_id)
+    WHERE s.name_step = "Оплата" AND date_step_end IS NOT NULL
+    GROUP BY 1
+    UNION ALL
+    SELECT b.title, SUM(ba.amount) AS Quantity, SUM(ba.price * ba.amount) AS Total
+    FROM book b 
+        INNER JOIN buy_archive ba USING (book_id)
+    GROUP BY 1) temp
+GROUP BY 1
+ORDER BY 2 DESC;
