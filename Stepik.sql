@@ -586,3 +586,13 @@ VALUES
 UPDATE book b, buy_book bb
 SET b.amount = b.amount - bb.amount 
 WHERE bb.buy_id = 5 AND b.book_id = bb.book_id;
+
+CREATE TABLE buy_pay AS
+SELECT title, name_author, b.price, bb.amount,
+        b.price * bb.amount AS Стоимость
+        FROM book b
+        INNER JOIN author USING (author_id)
+        INNER JOIN buy_book bb USING (book_id)
+WHERE bb.buy_id = 5
+ORDER BY 1;
+SELECT * FROM buy_pay;
