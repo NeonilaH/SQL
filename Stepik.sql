@@ -556,3 +556,33 @@ FROM (
     GROUP BY 1) temp
 GROUP BY 1
 ORDER BY 2 DESC;
+
+INSERT INTO client (name_client, city_id, email)
+SELECT "Попов Илья", city_id, "popov@test"
+FROM city
+WHERE name_city = "Москва";
+
+INSERT INTO buy (buy_description, client_id)
+SELECT "Связаться со мной по вопросу доставки", client_id
+FROM client
+WHERE name_client = "Попов Илья";
+
+INSERT INTO buy_book (buy_id, book_id, amount)
+VALUES 
+(5, (SELECT book_id 
+     FROM book 
+     WHERE title = "Лирика" AND author_id IN (
+         SELECT author_id 
+         FROM author 
+         WHERE name_author LIKE "Пастернак%")), 2),
+         
+(5, (SELECT book_id 
+     FROM book 
+     WHERE title = "Белая гвардия" AND author_id IN (
+         SELECT author_id 
+         FROM author 
+         WHERE name_author LIKE "Булгаков%")), 1);
+
+UPDATE book b, buy_book bb
+SET b.amount = b.amount - bb.amount 
+WHERE bb.buy_id = 5 AND b.book_id = bb.book_id;
