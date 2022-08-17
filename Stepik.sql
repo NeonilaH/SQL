@@ -392,6 +392,8 @@ FROM book b
     INNER JOIN supply s ON a.name_author = s.author
     WHERE b.title = s.title AND b.price = s.price;
 
+-- 2.3
+
 UPDATE book b
     INNER JOIN author a ON b.author_id = a.author_id
     INNER JOIN supply s ON s.title = b.title AND a.name_author = s.author 
@@ -448,6 +450,8 @@ USING author
      INNER JOIN book ON author.author_id = book.author_id
      INNER JOIN genre ON genre.genre_id = book.genre_id     
 WHERE name_genre = 'Поэзия';
+
+-- 2.4
 
 SELECT buy_book.buy_id, book.title, book.price, buy_book.amount
 FROM buy_book
@@ -556,6 +560,8 @@ FROM (
     GROUP BY 1) temp
 GROUP BY 1
 ORDER BY 2 DESC;
+
+-- 2.5
 
 INSERT INTO client (name_client, city_id, email)
 SELECT "Попов Илья", city_id, "popov@test"
