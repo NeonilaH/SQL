@@ -601,3 +601,7 @@ INSERT INTO buy_step (buy_id, step_id, date_step_beg, date_step_end)
 SELECT buy_id, step_id, NULL, NULL
 FROM step, buy
 WHERE buy_id = 5;
+
+UPDATE buy_step
+SET date_step_beg = "2020-04-12"
+WHERE buy_id = 5 and step_id = 1;
