@@ -641,3 +641,11 @@ FROM attempt
         RIGHT JOIN subject USING (subject_id)
 GROUP BY 1
 ORDER BY 3 DESC;
+
+SELECT name_student, result
+FROM student
+    JOIN attempt USING (student_id)
+WHERE result = (
+        SELECT MAX(result)
+        FROM attempt)
+ORDER BY 1;
