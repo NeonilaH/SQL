@@ -596,3 +596,8 @@ SELECT title, name_author, b.price, bb.amount,
 WHERE bb.buy_id = 5
 ORDER BY 1;
 SELECT * FROM buy_pay;
+
+INSERT INTO buy_step (buy_id, step_id, date_step_beg, date_step_end)
+SELECT buy_id, step_id, NULL, NULL
+FROM step, buy
+WHERE buy_id = 5;
