@@ -629,3 +629,15 @@ WHERE buy_id = 5 AND step_id = (
 
 -- 3.1
 
+SELECT name_student, date_attempt, result
+FROM student
+    JOIN attempt USING (student_id) 
+    JOIN subject USING (subject_id)
+WHERE name_subject = "Основы баз данных"
+ORDER BY 3 DESC;
+
+SELECT name_subject, COUNT(attempt_id) AS Количество, ROUND(AVG(result), 2) AS Среднее
+FROM attempt
+        RIGHT JOIN subject USING (subject_id)
+GROUP BY 1
+ORDER BY 3 DESC;
