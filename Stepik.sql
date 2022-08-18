@@ -675,3 +675,9 @@ FROM subject
     WHERE name_subject = "Основы баз данных"
 ORDER BY RAND()
 LIMIT 3;
+
+SELECT name_question, name_answer, IF(is_correct = 1, "Верно", "Неверно") AS Результат
+FROM question 
+    JOIN testing USING (question_id)
+    JOIN answer USING (answer_id)
+WHERE attempt_id = 7;
