@@ -681,3 +681,12 @@ FROM question
     JOIN testing USING (question_id)
     JOIN answer USING (answer_id)
 WHERE attempt_id = 7;
+
+SELECT name_student, name_subject, date_attempt, ROUND((SUM(is_correct) / 3 * 100), 2) AS Результат
+FROM student
+    JOIN attempt USING(student_id)
+    JOIN subject USING(subject_id)
+    JOIN testing USING(attempt_id)
+    JOIN answer USING(answer_id)
+GROUP BY 1, 2, 3
+ORDER BY 1, 3 DESC;
