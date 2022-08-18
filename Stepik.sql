@@ -657,3 +657,14 @@ FROM student
 GROUP BY 1, 2
 HAVING COUNT(date_attempt) > 1
 ORDER BY 3;
+
+SELECT name_subject, IFNULL(COUNT(DISTINCT student_id), 0) AS Количество
+FROM subject 
+    LEFT JOIN attempt USING (subject_id)
+GROUP BY 1
+ORDER BY 2 DESC;
+                    /*SELECT name_subject, IF(COUNT(DISTINCT student_id) > 0, COUNT(DISTINCT student_id), 0) AS Количество
+                    FROM subject 
+                        LEFT JOIN attempt USING (subject_id)
+                    GROUP BY 1
+                    ORDER BY 2 DESC;*/
