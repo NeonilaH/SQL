@@ -711,3 +711,11 @@ FROM student st
     LEFT JOIN subject sb USING (subject_id)
 WHERE name_subject = "Основы баз данных" AND name_student = "Баранов Павел";
 
+INSERT INTO testing (attempt_id, question_id, answer_id)
+SELECT attempt_id, question_id, NULL
+FROM attempt
+    JOIN question USING (subject_id)
+WHERE attempt_id = 
+        (SELECT MAX(attempt_id) FROM attempt)
+ORDER BY RAND()
+LIMIT 3;
