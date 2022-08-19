@@ -690,3 +690,14 @@ FROM student
     JOIN answer USING(answer_id)
 GROUP BY 1, 2, 3
 ORDER BY 1, 3 DESC;
+
+SELECT name_subject, 
+    CONCAT(LEFT(name_question, 30), '...') AS Вопрос, 
+    COUNT(t.answer_id) AS Всего_ответов,
+    ROUND(SUM(is_correct) / COUNT(t.answer_id) * 100, 2) AS Успешность
+FROM subject
+    JOIN question USING (subject_id)
+    JOIN testing t USING(question_id)
+    LEFT JOIN answer a USING (answer_id)
+GROUP BY 1, 2
+ORDER BY 1, 4 DESC, 2;
