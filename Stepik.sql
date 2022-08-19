@@ -701,3 +701,13 @@ FROM subject
     LEFT JOIN answer a USING (answer_id)
 GROUP BY 1, 2
 ORDER BY 1, 4 DESC, 2;
+
+-- 3.1
+
+INSERT INTO attempt (student_id, subject_id, date_attempt, result)
+SELECT st.student_id, sb.subject_id, NOW(), NULL
+FROM student st
+    JOIN attempt a USING (student_id)
+    LEFT JOIN subject sb USING (subject_id)
+WHERE name_subject = "Основы баз данных" AND name_student = "Баранов Павел";
+
