@@ -702,7 +702,7 @@ FROM subject
 GROUP BY 1, 2
 ORDER BY 1, 4 DESC, 2;
 
--- 3.1
+-- 3.2
 
 INSERT INTO attempt (student_id, subject_id, date_attempt, result)
 SELECT st.student_id, sb.subject_id, NOW(), NULL
@@ -727,3 +727,31 @@ SET result = (SELECT ROUND((SUM(is_correct) / 3 * 100), 0)
                      WHERE attempt_id = 8)
 WHERE attempt_id = 8;
 
+DELETE FROM attempt
+WHERE date_attempt < "2020-05-01";
+
+-- 3.3 
+
+SELECT name_enrollee
+FROM enrollee
+    JOIN program_enrollee USING(enrollee_id)
+    JOIN program USING(program_id)
+WHERE name_program = "Мехатроника и робототехника"
+ORDER BY 1;
+
+SELECT name_program
+FROM program
+    JOIN program_subject USING (program_id)
+    JOIN subject USING (subject_id)
+WHERE name_subject = "Информатика"
+ORDER BY 1 DESC;
+
+SELECT name_subject,
+    ROUND (COUNT(enrollee_id), 1) AS Количество,
+    ROUND (MAX(result), 1) AS Максимум,
+    ROUND (MIN(result), 1) AS Минимум,
+    ROUND (AVG(result), 1) AS Среднее
+FROM subject s
+    JOIN enrollee_subject es ON s.subject_id = es.subject_id
+GROUP BY 1
+ORDER BY 1;
