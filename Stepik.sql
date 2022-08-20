@@ -755,3 +755,10 @@ FROM subject s
     JOIN enrollee_subject es ON s.subject_id = es.subject_id
 GROUP BY 1
 ORDER BY 1;
+
+SELECT name_program
+FROM program
+    JOIN program_subject USING (program_id)
+GROUP BY name_program
+HAVING MIN(min_result) >= 40
+ORDER BY 1;
