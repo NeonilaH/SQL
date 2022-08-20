@@ -719,3 +719,11 @@ WHERE attempt_id =
         (SELECT MAX(attempt_id) FROM attempt)
 ORDER BY RAND()
 LIMIT 3;
+
+UPDATE attempt
+SET result = (SELECT ROUND((SUM(is_correct) / 3 * 100), 0) 
+                     FROM answer
+                     JOIN testing USING (answer_id)
+                     WHERE attempt_id = 8)
+WHERE attempt_id = 8;
+
