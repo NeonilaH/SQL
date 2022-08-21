@@ -762,3 +762,45 @@ FROM program
 GROUP BY name_program
 HAVING MIN(min_result) >= 40
 ORDER BY 1;
+
+SELECT name_program, plan
+FROM program
+WHERE plan = (
+    SELECT MAX(plan)
+    FROM program);
+
+SELECT name_enrollee, IFNULL(SUM(bonus), 0) AS Бонус
+FROM enrollee e
+    LEFT JOIN enrollee_achievement ea ON e.enrollee_id = ea.enrollee_id
+    LEFT JOIN achievement a ON a.achievement_id = ea.achievement_id
+GROUP BY 1
+ORDER BY 1;
+
+SELECT name_department, 
+    name_program, 
+    plan, 
+    COUNT(enrollee_id) AS Количество, 
+    ROUND (COUNT(enrollee_id)/plan, 2) AS Конкурс
+FROM department
+    JOIN program USING (department_id)
+    JOIN program_enrollee USING (program_id)
+GROUP BY program_id
+ORDER BY plan;
+
+SELECT name_program
+FROM program
+    JOIN program_subject USING (program_id)
+    JOIN subject USING (subject_id)
+WHERE name_subject IN ("Информатика", "Математика")
+GROUP BY name_program
+HAVING COUNT(name_subject) = 2
+ORDER BY name_program;
+
+SELECT name_program, name_enrollee, SUM(result) AS itog
+FROM enrollee
+    JOIN program_enrollee USING (enrollee_id)
+    JOIN program USING (program_id)
+    JOIN program_subject USING (program_id)
+    JOIN enrollee_subject USING (enrollee_id, subject_id)
+GROUP BY 1, 2
+ORDER BY 1, 3 DESC;
