@@ -824,3 +824,14 @@ FROM enrollee
 GROUP BY 1, 2
 ORDER BY 1, 3 DESC;
  
+DELETE FROM applicant
+USING applicant
+    JOIN (SELECT program_id, enrollee.enrollee_id, SUM(result) AS itog
+        FROM enrollee
+            JOIN program_enrollee USING (enrollee_id)
+            JOIN program USING (program_id)
+            JOIN program_subject USING (program_id)
+            JOIN enrollee_subject USING (enrollee_id, subject_id)
+        WHERE result < min_result
+        GROUP BY 1, 2) temp
+     USING (program_id, enrollee_id);
