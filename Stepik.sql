@@ -804,3 +804,12 @@ FROM enrollee
     JOIN enrollee_subject USING (enrollee_id, subject_id)
 GROUP BY 1, 2
 ORDER BY 1, 3 DESC;
+
+SELECT program.name_program, enrollee.name_enrollee
+FROM enrollee
+    JOIN program_enrollee USING (enrollee_id)
+    JOIN program USING (program_id)
+    JOIN program_subject USING (program_id)
+    JOIN enrollee_subject USING (enrollee_id, subject_id)
+WHERE result < min_result
+ORDER BY 1, 2;
