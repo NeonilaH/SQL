@@ -824,6 +824,15 @@ FROM enrollee
 GROUP BY 1, 2
 ORDER BY 1, 3 DESC;
  
+SELECT program.name_program, enrollee.name_enrollee
+FROM enrollee
+    JOIN program_enrollee USING (enrollee_id)
+    JOIN program USING (program_id)
+    JOIN program_subject USING (program_id)
+    JOIN enrollee_subject USING (enrollee_id, subject_id)
+WHERE result < min_result
+ORDER BY 1, 2;
+
 DELETE FROM applicant
 USING applicant
     JOIN (SELECT program_id, enrollee.enrollee_id, SUM(result) AS itog
@@ -835,3 +844,22 @@ USING applicant
         WHERE result < min_result
         GROUP BY 1, 2) temp
      USING (program_id, enrollee_id);
+
+UPDATE applicant 
+    JOIN (
+        SELECT enrollee_id, IFNULL(SUM(bonus), 0) AS Бонус 
+        FROM enrollee_achievement
+        LEFT JOIN achievement USING(achievement_id)
+        GROUP BY enrollee_id 
+        ) AS temp
+    USING(enrollee_id)
+SET itog = itog + Бонус;
+
+CREATE TABLE applicant_order AS
+SELECT program_id, enrollee_id, itog 
+FROM applicant
+ORDER BY 1, 3 DESC;
+SELECT * FROM applicant_order;
+DROP TABLE applicant;
+
+ALTER TABLE applicant_order ADD str_id INT FIRST;
