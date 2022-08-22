@@ -814,6 +814,8 @@ FROM enrollee
 WHERE result < min_result
 ORDER BY 1, 2;
 
+-- 3.4
+
 CREATE TABLE applicant AS
 SELECT program_id, enrollee.enrollee_id, SUM(result) AS itog
 FROM enrollee
@@ -863,3 +865,16 @@ SELECT * FROM applicant_order;
 DROP TABLE applicant;
 
 ALTER TABLE applicant_order ADD str_id INT FIRST;
+
+SET @num_pr := 0;
+SET @row_num := 1;
+UPDATE applicant_order
+    SET str_id = IF(program_id = @num_pr, @row_num := @row_num + 1, @row_num := 1 AND @num_pr := @num_pr + 1);
+
+CREATE TABLE student AS
+    SELECT program.name_program, enrollee.name_enrollee, applicant_order.itog 
+    FROM applicant_order
+        JOIN program USING (program_id)
+        JOIN enrollee USING (enrollee_id)
+    WHERE applicant_order.str_id <= program.plan
+    ORDER by 1, 3 DESC;
