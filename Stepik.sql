@@ -19,7 +19,8 @@ VALUES (2, "Белая гвардия", "Булгаков М.А.", 540.50, 5),
 
 SELECT * FROM book;
 
-SELECT author, title, price FROM book
+SELECT author, title, price 
+FROM book
 
 SELECT title AS Название, author AS Автор
 FROM book;
@@ -38,22 +39,26 @@ SELECT author, title, price
 FROM book
 WHERE amount < 10;
 
-SELECT title, author, price, amount FROM book
+SELECT title, author, price, amount 
+FROM book
 WHERE (price < 500 OR price > 600) AND price * amount >= 5000
 
 SELECT title, author
 FROM book
 WHERE price BETWEEN 540.50 AND 800 AND amount IN (2, 3, 5, 7);
 
-SELECT author, title FROM book
+SELECT author, title 
+FROM book
 WHERE amount BETWEEN 2 AND 14
 ORDER BY author DESC, title ASC;
 
-SELECT author, title FROM book
+SELECT author, title 
+FROM book
 WHERE amount BETWEEN 2 AND 14
 ORDER BY 1 DESC, 2 ASC;
 
-SELECT title, author FROM book
+SELECT title, author 
+FROM book
 WHERE title LIKE "_% %" AND author LIKE "%С.%"
 ORDER BY 1 ASC;
 
@@ -176,8 +181,8 @@ WHERE author IN(
     HAVING SUM(amount) > 10);
 
 CREATE TABLE ordering AS 
-SELECT author, title,
-    (SELECT ROUND(AVG(amount)) FROM book) AS amount
+SELECT author, title, (
+    SELECT ROUND(AVG(amount)) FROM book) AS amount
     FROM book
     WHERE amount < (SELECT AVG(amount) FROM book);
 
@@ -210,8 +215,9 @@ ORDER BY 3 DESC, 2 DESC;
 
 SELECT name, city, date_first, date_last
 FROM trip
-WHERE DATEDIFF(date_last, date_first) = 
-    (SELECT MIN(DATEDIFF(date_last, date_first)) FROM trip);
+WHERE DATEDIFF(date_last, date_first) = (
+    SELECT MIN(DATEDIFF(date_last, date_first)) 
+    FROM trip);
 
 SELECT name, city, date_first, date_last
 FROM trip
