@@ -345,7 +345,8 @@ WHERE amount > 8
 ORDER BY price DESC;
 
 SELECT name_genre
-FROM genre LEFT JOIN book
+FROM genre 
+    LEFT JOIN book
     ON genre.genre_id = book.genre_id
 WHERE book.genre_id IS NULL;
                 --SELECT name_genre
@@ -355,7 +356,8 @@ WHERE book.genre_id IS NULL;
 
 SELECT city.name_city, author.name_author, 
     (DATE_ADD('2020-01-01', INTERVAL FLOOR(RAND() * 365) DAY)) as Дата
-FROM city CROSS JOIN author     --FROM city, author --alternatively
+FROM city 
+    CROSS JOIN author     --FROM city, author --alternatively
 ORDER BY 1, 3 DESC;
 
 SELECT name_genre, title, name_author
@@ -396,7 +398,7 @@ SELECT b.title AS Название, name_author AS Автор, b.amount + s.amou
 FROM book b
     INNER JOIN author a USING(author_id)
     INNER JOIN supply s ON a.name_author = s.author
-    WHERE b.title = s.title AND b.price = s.price;
+WHERE b.title = s.title AND b.price = s.price;
 
 -- 2.3
 
