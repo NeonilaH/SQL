@@ -162,7 +162,7 @@ WHERE author NOT IN (
 
 UPDATE book
 SET price = price * 0.9
-WHERE amount BETWEEN 5 and 10;
+WHERE amount BETWEEN 5 AND 10;
 
 UPDATE book
 SET buy = IF(buy > amount, amount, buy),
@@ -354,7 +354,7 @@ WHERE book.genre_id IS NULL;
                 --WHERE book.genre_id IS NULL;
 
 SELECT city.name_city, author.name_author, 
-    (DATE_ADD('2020-01-01', INTERVAL FLOOR(RAND() * 365) DAY)) as Дата
+    (DATE_ADD('2020-01-01', INTERVAL FLOOR(RAND() * 365) DAY)) AS Дата
 FROM city 
     CROSS JOIN author     --FROM city, author --alternatively
 ORDER BY 1, 3 DESC;
