@@ -295,7 +295,6 @@ WHERE date_payment IS NULL;
 DELETE FROM fine
 WHERE date_violation < "2020-02-01";
 
-
 -- ________________________________________________________________________________________________
 
 --2.1
@@ -376,7 +375,7 @@ ORDER BY 2;
 
 SELECT name_author
 FROM book
-    INNER JOIN  author ON author.author_id  = book.author_id
+    INNER JOIN author ON author.author_id  = book.author_id
 GROUP BY name_author 
 HAVING COUNT(DISTINCT book.genre_id) = 1; 
 
@@ -414,7 +413,7 @@ WHERE b.price != s.price;
 INSERT INTO author (name_author)
 SELECT supply.author
 FROM author 
-    RIGHT JOIN supply on author.name_author = supply.author
+    RIGHT JOIN supply ON author.name_author = supply.author
 WHERE name_author IS Null;
 SELECT * FROM author;
 
@@ -730,9 +729,9 @@ LIMIT 3;
 
 UPDATE attempt
 SET result = (SELECT ROUND((SUM(is_correct) / 3 * 100), 0) 
-                     FROM answer
-                     JOIN testing USING (answer_id)
-                     WHERE attempt_id = 8)
+              FROM answer
+              JOIN testing USING (answer_id)
+              WHERE attempt_id = 8)
 WHERE attempt_id = 8;
 
 DELETE FROM attempt
