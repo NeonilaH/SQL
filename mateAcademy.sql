@@ -53,7 +53,7 @@ The result should contain the following columns:
 month from hiring_date: month
 the number of employees that were hired that month: number_of_employees. */
 
-SELECT EXTRACT(month from hiring_date) AS month, COUNT(id) AS number_of_employees
+SELECT EXTRACT(MONTH FROM hiring_date) AS month, COUNT(id) AS number_of_employees
 FROM employee
 GROUP BY month
 HAVING COUNT(id) >= 3;
