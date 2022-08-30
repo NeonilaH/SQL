@@ -83,7 +83,7 @@ WHERE sum > 5000;
 
 SELECT COUNT(LastName) 
 FROM bank.Client
-UNION all
+UNION ALL
 SELECT COUNT(LastName) 
 FROM bank.Client
 INNER JOIN bank.Department
