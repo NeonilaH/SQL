@@ -19,7 +19,7 @@ Set a temporary name for the resulting column - number_of_pupils.*/
 
 SELECT COUNT(id) AS number_of_pupils
 FROM pupil
-WHERE EXTRACT(MONTH FROM CURRENT_DATE) = EXTRACT(MONTH FROM birth_date)
+WHERE EXTRACT(MONTH FROM CURRENT_DATE) = EXTRACT(MONTH FROM birth_date);
 
 /* 4.The tables category and product are given.
 Display information about each of the products of the category 'Beverages' in the form: [product name] - [amount] units.
@@ -35,7 +35,7 @@ Present the date of dismissal in three different columns: day, month, year */
 
 SELECT first_name, last_name, EXTRACT(DAY FROM date_of_dismissal) AS day, EXTRACT(MONTH FROM date_of_dismissal) AS month, EXTRACT(YEAR FROM date_of_dismissal) AS year
 FROM staff
-WHERE date_of_dismissal IS NOT NULL
+WHERE date_of_dismissal IS NOT NULL;
 
 /* 6. The tables scoreboard and pupil are given.
 Display the average mark of each subject for the student with the id 3.
@@ -46,3 +46,14 @@ FROM scoreboard s
     JOIN pupil p ON p.id = s.pupil_id
 WHERE p.id = 3
 GROUP BY s.subject;
+
+/* 7. Display information about the number of employees who were hired each month.
+Show the result only if the number of employees is 3 or more.
+The result should contain the following columns:
+month from hiring_date: month
+the number of employees that were hired that month: number_of_employees. */
+
+SELECT EXTRACT(month from hiring_date) AS month, COUNT(id) AS number_of_employees
+FROM employee
+GROUP BY month
+HAVING COUNT(id) >= 3;
