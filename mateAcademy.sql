@@ -1,7 +1,7 @@
 /* 1. Display information about all existing dishes in the format: [dish name]: [price] UAH
 Set a temporary name for the resulting column - dish_information.*/
 
-SELECT CONCAT (name, ': ', price, ' UAH') AS dish_information
+SELECT CONCAT(name, ': ', price, ' UAH') AS dish_information
 FROM dish;
 
 /* 2. Display the number of new staff who were hired each year.
@@ -36,3 +36,13 @@ Present the date of dismissal in three different columns: day, month, year */
 SELECT first_name, last_name, EXTRACT(DAY FROM date_of_dismissal) AS day, EXTRACT(MONTH FROM date_of_dismissal) AS month, EXTRACT(YEAR FROM date_of_dismissal) AS year
 FROM staff
 WHERE date_of_dismissal IS NOT NULL
+
+/* 6. The tables scoreboard and pupil are given.
+Display the average mark of each subject for the student with the id 3.
+Present the result in column named pupil_mark as follows: [first_name] [last_name]: [subject] - [average mark]. */
+
+SELECT CONCAT(first_name, ' ', last_name, ': ', s.subject, ' - ', AVG(s.mark)) AS pupil_mark
+FROM scoreboard s
+    JOIN pupil p ON p.id = s.pupil_id
+WHERE p.id = 3
+GROUP BY s.subject;
