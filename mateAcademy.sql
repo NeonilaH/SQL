@@ -30,3 +30,9 @@ FROM category c
     JOIN product p ON c.id = p.category_id
 WHERE c.name = 'Beverages';
 
+/* 5. Display information (first_name and last_name) about the staff who are not working anymore.
+Present the date of dismissal in three different columns: day, month, year */
+
+SELECT first_name, last_name, EXTRACT(DAY FROM date_of_dismissal) AS day, EXTRACT(MONTH FROM date_of_dismissal) AS month, EXTRACT(YEAR FROM date_of_dismissal) AS year
+FROM staff
+WHERE date_of_dismissal IS NOT NULL
