@@ -15,7 +15,7 @@ FROM staff
 GROUP BY year;
 
 /* 3. Display the number of students who have a birthday in the current calendar month. 
-Set a temporary name for the resulting column - number_of_pupils.*/
+Set a temporary name for the resulting column - number_of_pupils. */
 
 SELECT COUNT(id) AS number_of_pupils
 FROM pupil
