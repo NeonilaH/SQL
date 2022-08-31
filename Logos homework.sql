@@ -21,7 +21,7 @@ sessionTime TIME NOT NULL,
 hallNumber INT (2) NOT NULL,
 hallDescription VARCHAR (255) NOT NULL,
 movieName VARCHAR (255) NOT NULL,
-price float NOT NULL,
+price FLOAT NOT NULL,
 seat INT (2) NOT NULL,
 rowNumber INT (2) NOT NULL,
 FOREIGN KEY (ticketID) REFERENCES viewer (id)
