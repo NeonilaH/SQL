@@ -34,7 +34,9 @@
 • UNION ALL
 • INNER JOIN .. ON
 • LEFT JOIN
-• ORDER BY ... DESC, ... ASC
+• ORDER BY 
+• DESC
+• ASC
 
 ***
 
