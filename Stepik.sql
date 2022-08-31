@@ -414,7 +414,7 @@ INSERT INTO author (name_author)
 SELECT supply.author
 FROM author 
     RIGHT JOIN supply ON author.name_author = supply.author
-WHERE name_author IS Null;
+WHERE name_author IS NULL;
 SELECT * FROM author;
 
 INSERT INTO book (title, author_id, price, amount)
@@ -484,7 +484,7 @@ ORDER BY 2 DESC, 1;
 
 SELECT buy_step.buy_id, buy_step.date_step_end
 FROM buy_step
-WHERE date_step_end IS NOT NULL and step_id IN (
+WHERE date_step_end IS NOT NULL AND step_id IN (
     SELECT step_id
     FROM step
     WHERE name_step = "Оплата");
