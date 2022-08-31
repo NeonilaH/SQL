@@ -6,7 +6,7 @@
 — Не забуваємо що кожна таблиця повинна містити стовпець ID
 — Можете від себе додати ще таблиці і створити між ними зв’язок
 
-CREATE database cinema;
+CREATE DATABASE cinema;
 CREATE TABLE viewer
 (
 id INT (5) AUTO_INCREMENT PRIMARY KEY,
