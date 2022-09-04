@@ -32,7 +32,7 @@
 • LIKE % _
 • REGEXP
 • UNION ALL
-• INNER JOIN .. ON
+• INNER JOIN ... ON
 • LEFT JOIN
 • ORDER BY 
 • DESC
@@ -67,7 +67,7 @@
 
 ***
 
-## mateAcademy.sql
+## MateAcademy.sql
 
 • EXTRACT
 • YEAR FROM
