@@ -9,8 +9,7 @@ The result should contain the following columns:
 the year from date_of_hiring: year
 number of staff that were hired that year: number_of_staff */
 
-SELECT EXTRACT (YEAR FROM date_of_hiring) AS year, 
-COUNT(id) AS number_of_staff
+SELECT EXTRACT (YEAR FROM date_of_hiring) AS year, COUNT(id) AS number_of_staff
 FROM staff
 GROUP BY year;
 
