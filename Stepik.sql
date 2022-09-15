@@ -127,8 +127,7 @@ WHERE price < ANY (
         FROM book 
         GROUP BY author);
 
-SELECT title, author, amount,
-         ABS(amount - (SELECT MAX(amount) FROM book)) AS Заказ
+SELECT title, author, amount, ABS(amount - (SELECT MAX(amount) FROM book)) AS Заказ
 FROM book
 WHERE ABS(amount - (SELECT MAX(amount) FROM book)) !=0;
 
@@ -183,8 +182,8 @@ WHERE author IN(
 CREATE TABLE ordering AS 
 SELECT author, title, (
     SELECT ROUND(AVG(amount)) FROM book) AS amount
-    FROM book
-    WHERE amount < (SELECT AVG(amount) FROM book);
+FROM book
+WHERE amount < (SELECT AVG(amount) FROM book);
 
 -- 1.6
     
@@ -224,8 +223,7 @@ FROM trip
 WHERE MONTH(date_first) = MONTH(date_last)
 ORDER BY 2, 1;
 
-SELECT MONTHNAME(date_first) AS Месяц, 
-    COUNT(MONTH(date_first)) AS Количество
+SELECT MONTHNAME(date_first) AS Месяц, COUNT(MONTH(date_first)) AS Количество
 FROM trip
 GROUP BY 1
 ORDER BY 2 DESC, 1;
