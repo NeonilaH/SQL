@@ -347,7 +347,8 @@ FROM genre
     ON genre.genre_id = book.genre_id
 WHERE book.genre_id IS NULL;
                 --SELECT name_genre
-                --FROM book RIGHT JOIN genre
+                --FROM book 
+                --   RIGHT JOIN genre
                 --   ON genre.genre_id = book.genre_id
                 --WHERE book.genre_id IS NULL;
 
