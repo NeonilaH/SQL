@@ -78,6 +78,8 @@
 • IS NULL
 • IS NOT NULL
 
+***
+
 ## Coursera SQLite.sql
 • SUBSTR
 • LOWER
