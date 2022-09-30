@@ -77,3 +77,6 @@
 • DAY FROM
 • IS NULL
 • IS NOT NULL
+
+## Coursera SQLite.sql
+• 
