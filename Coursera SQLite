@@ -14,7 +14,7 @@ FROM Employees
 
 SELECT FirstName || ' ' || LastName || ' ' || (DATE ('now') - HireDate) AS Employment
 FROM Employees
-ORDER BY by 1
+ORDER BY 1
 
 4. The COALESCE() function returns the first non-null value in a list.
 
