@@ -64,6 +64,7 @@
 • ORDER BY RAND()
 • DELETE FROM
 • LIMIT
+• LEFT
 
 ***
 
