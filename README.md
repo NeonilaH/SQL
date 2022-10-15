@@ -89,3 +89,4 @@
 • TRIM
 • LTRIM
 • RTRIM
+• DATE ('now')
