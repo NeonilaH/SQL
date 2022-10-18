@@ -1,5 +1,9 @@
 # SQL
 
+QA and SQL courses homeworks
+
+***
+
 ## LITS homework.sql
 
 • CREATE DATABASE
