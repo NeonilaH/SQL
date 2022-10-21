@@ -149,7 +149,7 @@ CREATE TABLE roles77 (
 		role_name INT UNIQUE NOT NULL);
 
 ALTER TABLE roles77 
-ALTER COLUMN role_name type VARCHAR(30);
+ALTER COLUMN role_name TYPE VARCHAR(30);
 	
 INSERT  INTO roles77(role_name)
 VALUES ('Junior Python developer'),
