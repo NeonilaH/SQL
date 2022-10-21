@@ -1,7 +1,6 @@
 CREATE TABLE employees77(
-  id SERIAL PRIMARY KEY,
-employee_name VARCHAR(50) NOT NULL
-);
+	id SERIAL PRIMARY KEY,
+	employee_name VARCHAR(50) NOT NULL);
 
 INSERT  INTO employees77(employee_name)
 VALUES ('Jimmy Carter'),
@@ -98,7 +97,7 @@ VALUES (1000),
 	   (2400),
 	   (2500);
 
-create table employee_salary77(
+CREATE TABLE employee_salary77(
 	id SERIAL PRIMARY KEY,
 	employee_id INT UNIQUE NOT NULL,
 	salary_id INT NOT NULL
@@ -146,17 +145,15 @@ VALUES (3, 7),
 	   (62, 12),
 	   (66, 13);
 
-create table roles77 (
-		id 	serial primary key,
-		role_name int not null unique);
+CREATE TABLE roles77 (
+		id SERIAL PRIMARY KEY,
+		role_name INT UNIQUE NOT NULL);
 
-alter table roles77 
-	alter column role_name type varchar(30);
+ALTER TABLE roles77 
+	ALTER COLUMN role_name type VARCHAR(30);
 	
-select from roles77;
-
-insert into roles77(role_name)
-values ('Junior Python developer'),
+INSERT  INTO roles77(role_name)
+VALUES ('Junior Python developer'),
 	   ('Middle Python developer'),
 	   ('Senior Python developer'),
 	   ('Junior Java developer'),
@@ -177,17 +174,15 @@ values ('Junior Python developer'),
 	   ('Middle Automation QA engineer'),
 	   ('Senior Automation QA engineer');
 
-create table roles_employee77(
+CREATE TABLE roles_employee77(
 	id SERIAL PRIMARY KEY,
-	employee_id int unique not null,
-	role_id int not null,
-	foreign key (employee_id) 
-		references employees77(id),
-	foreign key (role_id)
-		references roles77(id));
+	employee_id INT UNIQUE not null,
+	role_id INT NOT NULL,
+	FOREIGN KEY (employee_id) REFERENCES employees77(id),
+	FOREIGN KEY (role_id) REFERENCES roles77(id));
 		
-insert into roles_employee77(employee_id, role_id)
-values (7, 2),
+INSERT  INTO roles_employee77(employee_id, role_id)
+VALUES (7, 2),
  	   (20, 4),
  	   (3, 9),
  	   (5, 13),
