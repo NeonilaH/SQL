@@ -95,6 +95,8 @@ QA and SQL courses homeworks
 • RTRIM
 • DATE ('now')
 
+***
+
 ## [Ksendzov PostgreSQL.sql](https://github.com/NeonilaH/SQL/blob/main/Ksendzov%20PostgreSQL.sql)
 • SERIAL
 • UNIQUE
