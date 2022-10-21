@@ -44,7 +44,7 @@ QA and SQL courses homeworks
 
 ***
 
-## Stepik.sql
+## [Stepik.sql](https://github.com/NeonilaH/SQL/blob/main/Stepik.sql)
 
 • INSERT INTO ... (...) VALUES (...), (...)
 • INSERT INTO ... (..., ...) SELECT ..., ...
@@ -72,7 +72,7 @@ QA and SQL courses homeworks
 
 ***
 
-## MateAcademy.sql
+## [MateAcademy.sql](https://github.com/NeonilaH/SQL/blob/main/MateAcademy.sql)
 
 • EXTRACT
 • YEAR FROM
@@ -85,7 +85,7 @@ QA and SQL courses homeworks
 
 ***
 
-## Coursera SQLite.sql
+## [Coursera SQLite.sql](https://github.com/NeonilaH/SQL/blob/main/Coursera%20SQLite.sql)
 • SUBSTR
 • LOWER
 • UPPER
