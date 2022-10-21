@@ -4,7 +4,7 @@ QA and SQL courses homeworks
 
 ***
 
-## LITS homework.sql
+## [LITS homework.sql](https://github.com/NeonilaH/SQL/blob/main/LITS%20homework.sql)
 
 • CREATE DATABASE
 • CREATE TABLE
