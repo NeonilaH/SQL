@@ -94,3 +94,9 @@ QA and SQL courses homeworks
 • LTRIM
 • RTRIM
 • DATE ('now')
+
+## [Ksendzov PostgreSQL.sql](https://github.com/NeonilaH/SQL/blob/main/Ksendzov%20PostgreSQL.sql)
+• SERIAL
+• UNIQUE
+• ALTER TABLE 
+• ALTER COLUMN
