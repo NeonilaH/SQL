@@ -100,8 +100,7 @@ VALUES (1000),
 CREATE TABLE employee_salary77(
 	id SERIAL PRIMARY KEY,
 	employee_id INT UNIQUE NOT NULL,
-	salary_id INT NOT NULL
-);
+	salary_id INT NOT NULL);
 
 INSERT  INTO employee_salary77(employee_id, salary_id)
 VALUES (3, 7),
