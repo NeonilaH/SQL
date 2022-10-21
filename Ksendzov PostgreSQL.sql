@@ -175,7 +175,7 @@ VALUES ('Junior Python developer'),
 
 CREATE TABLE roles_employee77(
 	id SERIAL PRIMARY KEY,
-	employee_id INT UNIQUE not null,
+	employee_id INT UNIQUE NOT NULL,
 	role_id INT NOT NULL,
 	FOREIGN KEY (employee_id) REFERENCES employees77(id),
 	FOREIGN KEY (role_id) REFERENCES roles77(id));
