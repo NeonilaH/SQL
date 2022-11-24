@@ -15,7 +15,13 @@ SELECT * FROM cities;
 RENAME TABLE people
 TO humans;
 
-REATE VIEW CList AS
+CREATE VIEW CList AS
 SELECT FirstName, Salary
 FROM  Employees;
 SELECT * FROM List;
+
+CREATE OR REPLACE VIEW List AS
+SELECT FirstName, LastName, Salary
+FROM  Employees;
+
+DROP VIEW List;
