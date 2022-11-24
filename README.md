@@ -102,3 +102,6 @@ QA and SQL courses homeworks
 • UNIQUE
 • ALTER TABLE 
 • ALTER COLUMN
+
+## [SoloLearn.sql](https://github.com/NeonilaH/SQL/blob/main/SoloLearn.sql)
+SQRT() • RENAME TABLE • CREATE VIEW • CREATE OR REPLACE VIEW ̉• DROP VIEW • ADD • DROP COLUMN • DROP TABLE
