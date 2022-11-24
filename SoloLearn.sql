@@ -25,3 +25,8 @@ SELECT FirstName, LastName, Salary
 FROM  Employees;
 
 DROP VIEW List;
+
+ALTER TABLE people
+DROP COLUMN age;
+
+DROP TABLE students; 
