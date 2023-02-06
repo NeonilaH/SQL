@@ -26,3 +26,8 @@ ALTER TABLE people
 DROP COLUMN age;
 
 DROP TABLE students; 
+
+-- The REPLACE function replaces all occurrences of the given string with another one. For example, let's replace New York with NY in the city column:
+SELECT firstname, lastname, 
+REPLACE(city, 'New York', 'NY') 
+FROM Customers
