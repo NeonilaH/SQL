@@ -31,3 +31,10 @@ DROP TABLE students;
 SELECT firstname, lastname, 
 REPLACE(city, 'New York', 'NY') 
 FROM Customers
+
+-- Let's create a name column that has the first letter of the firstname, followed by a dot and the lastname in all uppercase:
+SELECT CONCAT(
+   SUBSTRING(firstname, 1, 1), 
+   '. ', 
+   UPPER(lastname)) AS name
+FROM Customers
