@@ -54,3 +54,7 @@ CASE
   ELSE 'Youth'
 END AS category
 FROM Customers
+
+-- By default, the AUTO_INCREMENT column starts with the value 1. .... This can be changed if needed, using the following:
+ALTER TABLE Customers
+ AUTO_INCREMENT=555
