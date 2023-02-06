@@ -45,3 +45,12 @@ CASE
     WHEN age >= 65 THEN 'Senior' 
 END AS category
 FROM Customers
+
+-- For all other cases, we can set a value using the ELSE keyword:
+SELECT firstname, lastname,
+CASE
+  WHEN age >= 65 THEN 'Senior'
+  WHEN age >= 25 AND age < 65 THEN 'Adult'
+  ELSE 'Youth'
+END AS category
+FROM Customers
