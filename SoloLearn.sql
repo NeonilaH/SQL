@@ -39,7 +39,7 @@ SELECT CONCAT(
    UPPER(lastname)) AS name
 FROM Customers
 
--- We want to set the __category__ columns value to __'Senior'__, in case the age value is greater than 65, __'Adult'__ in case it's in the range of 25 to 64, and __'Youth'__, if it's under 25. This is done using the __CASE__ statement.
+-- We want to set the category columns value to 'Senior', in case the age value is greater than 65, 'Adult' in case it's in the range of 25 to 64, and 'Youth', if it's under 25. This is done using the CASE statement.
 SELECT firstname, lastname,
 CASE
     WHEN age >= 65 THEN 'Senior' 
