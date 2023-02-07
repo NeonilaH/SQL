@@ -58,3 +58,7 @@ FROM Customers
 -- By default, the AUTO_INCREMENT column starts with the value 1. .... This can be changed if needed, using the following:
 ALTER TABLE Customers
  AUTO_INCREMENT=555
+
+-- NULL values are ignored by UNIQUE, meaning you can have multiple NULL values in a UNIQUE column. Let's make the lastname column of our Customers unique:
+ALTER TABLE Customers
+ADD UNIQUE (lastname)
