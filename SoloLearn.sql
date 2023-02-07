@@ -62,3 +62,8 @@ ALTER TABLE Customers
 -- NULL values are ignored by UNIQUE, meaning you can have multiple NULL values in a UNIQUE column. Let's make the lastname column of our Customers unique:
 ALTER TABLE Customers
 ADD UNIQUE (lastname)
+
+-- UNION. In case one of the tables has extra columns that we need to select, we can simply add them to the second select as NULL:
+SELECT firstname, lastname, age, city FROM Customers
+UNION
+SELECT firstname, lastname, age, NULL FROM Contacts
