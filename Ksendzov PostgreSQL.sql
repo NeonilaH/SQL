@@ -1,3 +1,7 @@
+1. [Homework Part 1 -  CREATE TABLE, INSERT  INTO, ALTER TABLE](#1)
+2. [Homework Part 2 - SELECT, JOIN](#2)
+
+### **1. Homework Part 1**<a name="1"><a>
 CREATE TABLE employees77(
 	id SERIAL PRIMARY KEY,
 	employee_name VARCHAR(50) NOT NULL);
@@ -221,3 +225,234 @@ VALUES (7, 2),
  	   (38, 9),
  	   (39, 10),
  	   (40, 11);
+
+### **2. Homework Part 2**<a name="2"><a>
+SELECT e.employee_name, s.monthly_salary 
+FROM employees e 
+  JOIN employee_salary es ON e.id = es.employee_id 
+  JOIN salary s ON es.salary_id = s.id;
+
+SELECT e.employee_name, s.monthly_salary 
+FROM employees e 
+  JOIN employee_salary es ON e.id = es.employee_id 
+  JOIN salary s ON es.salary_id = s.id 
+WHERE s.monthly_salary < 2000;
+
+SELECT es.employee_id 
+FROM employees e 
+  FULL JOIN employee_salary es ON e.id = es.employee_id 
+WHERE es.employee_id != e.id 
+ORDER BY es.employee_id;
+
+SELECT s.monthly_salary 
+FROM employees e 
+  FULL JOIN employee_salary es ON e.id = es.employee_id 
+  FULL JOIN salary s ON es.salary_id = s.id 
+WHERE e.employee_name IS NULL 
+ORDER BY s.monthly_salary;
+ 
+SELECT s.monthly_salary 
+FROM employees e 
+  FULL JOIN employee_salary es ON e.id = es.employee_id 
+  FULL JOIN salary s ON es.salary_id = s.id 
+WHERE e.employee_name IS NULL AND s.monthly_salary < 2000 
+ORDER BY s.monthly_salary;
+ 
+SELECT  e.employee_name, s.monthly_salary
+FROM employees e 
+  FULL JOIN employee_salary es ON e.id = es.employee_id 
+  FULL JOIN salary s ON es.salary_id = s.id 
+WHERE s.monthly_salary IS NULL 
+ORDER BY e.employee_name;
+
+SELECT e.employee_name, role_name 
+FROM employees e 
+  JOIN roles_employee re ON e.id = re.employee_id 
+  JOIN roles r ON re.role_id = r.id;
+
+SELECT e.employee_name, role_name 
+FROM employees e 
+  JOIN roles_employee re ON e.id = re.employee_id 
+  JOIN roles r ON re.role_id = r.id 
+WHERE r.role_name LIKE '%Java developer';
+
+SELECT e.employee_name, role_name 
+FROM employees e 
+  JOIN roles_employee re ON e.id = re.employee_id 
+  JOIN roles r ON re.role_id = r.id 
+WHERE r.role_name LIKE '%Python developer';
+
+SELECT e.employee_name, role_name 
+FROM employees e 
+  JOIN roles_employee re ON e.id = re.employee_id 
+  JOIN roles r ON re.role_id = r.id 
+WHERE r.role_name LIKE '%QA engineer';
+
+SELECT e.employee_name, role_name 
+FROM employees e 
+  JOIN roles_employee re ON e.id = re.employee_id 
+  JOIN roles r ON re.role_id = r.id 
+WHERE r.role_name LIKE '% Manual QA engineer';
+
+SELECT e.employee_name, role_name 
+FROM employees e 
+  JOIN roles_employee re ON e.id = re.employee_id 
+  JOIN roles r ON re.role_id = r.id 
+WHERE r.role_name LIKE '% Automation QA engineer';
+
+SELECT r.role_name, e.employee_name, monthly_salary 
+FROM employees e 
+  JOIN employee_salary es ON es.employee_id = e.id 
+  JOIN salary s ON es.salary_id = s.id 
+  JOIN roles_employee re ON e.id = re.employee_id 
+  JOIN roles r ON re.role_id = r.id 
+WHERE r.role_name LIKE 'Junior %';
+
+SELECT r.role_name, e.employee_name, monthly_salary 
+FROM employees e 
+  JOIN employee_salary es ON es.employee_id = e.id 
+  JOIN salary s ON es.salary_id = s.id 
+  JOIN roles_employee re ON e.id = re.employee_id 
+  JOIN roles r ON re.role_id = r.id 
+WHERE r.role_name LIKE 'Middle %';
+  
+SELECT r.role_name, e.employee_name, monthly_salary 
+FROM employees e 
+  JOIN employee_salary es ON es.employee_id = e.id 
+  JOIN salary s ON es.salary_id = s.id 
+  JOIN roles_employee re ON e.id = re.employee_id 
+  JOIN roles r ON re.role_id = r.id 
+WHERE r.role_name LIKE 'Senior %';
+  
+SELECT r.role_name, e.employee_name, monthly_salary 
+FROM employees e 
+  JOIN employee_salary es ON es.employee_id = e.id 
+  JOIN salary s ON es.salary_id = s.id 
+  JOIN roles_employee re ON e.id = re.employee_id 
+  JOIN roles r ON re.role_id = r.id 
+WHERE r.role_name LIKE '% Java developer';
+  
+SELECT r.role_name, e.employee_name, monthly_salary 
+FROM employees e 
+  JOIN employee_salary es ON es.employee_id = e.id 
+  JOIN salary s ON es.salary_id = s.id 
+  JOIN roles_employee re ON e.id = re.employee_id 
+  JOIN roles r ON re.role_id = r.id 
+WHERE r.role_name LIKE '% Python developer';
+  
+SELECT r.role_name, e.employee_name, monthly_salary 
+FROM employees e 
+  JOIN employee_salary es ON es.employee_id = e.id 
+  JOIN salary s ON es.salary_id = s.id 
+  JOIN roles_employee re ON e.id = re.employee_id 
+  JOIN roles r ON re.role_id = r.id 
+WHERE r.role_name LIKE 'Junior Python developer';
+
+SELECT r.role_name, e.employee_name, monthly_salary 
+FROM employees e 
+  JOIN employee_salary es ON es.employee_id = e.id 
+  JOIN salary s ON es.salary_id = s.id 
+  JOIN roles_employee re ON e.id = re.employee_id 
+  JOIN roles r ON re.role_id = r.id 
+WHERE r.role_name LIKE 'Middle JavaScript developer';
+
+SELECT r.role_name, e.employee_name, monthly_salary 
+FROM employees e 
+  JOIN employee_salary es ON es.employee_id = e.id 
+  JOIN salary s ON es.salary_id = s.id 
+  JOIN roles_employee re ON e.id = re.employee_id 
+  JOIN roles r ON re.role_id = r.id 
+WHERE r.role_name LIKE 'Senior JavaScript developer';
+  
+SELECT r.role_name, e.employee_name, monthly_salary 
+FROM employees e 
+  JOIN employee_salary es ON es.employee_id = e.id 
+  JOIN salary s ON es.salary_id = s.id 
+  JOIN roles_employee re ON e.id = re.employee_id 
+  JOIN roles r ON re.role_id = r.id 
+WHERE r.role_name LIKE 'Junior % QA engineer';
+  
+SELECT ROUND(avg(s.monthly_salary)) AS average_junior_salary 
+FROM salary s 
+  JOIN employee_salary es ON s.id = es.salary_id 
+  JOIN roles_employee re ON es.employee_id = re.employee_id 
+  JOIN roles r ON re.role_id = r.id  
+WHERE r.role_name LIKE 'Junior %';
+  
+SELECT round(sum(s.monthly_salary), 2) AS summary_JS_salary
+FROM salary s 
+  JOIN employee_salary es ON s.id = es.salary_id 
+  JOIN roles_employee re ON es.employee_id = re.employee_id 
+  JOIN roles r ON re.role_id = r.id  
+WHERE r.role_name LIKE '% JavaScript developer';
+  
+SELECT round(min(s.monthly_salary), 2) AS min_QA_salary
+FROM salary s 
+  JOIN employee_salary es ON s.id = es.salary_id 
+  JOIN roles_employee re ON es.employee_id = re.employee_id 
+  JOIN roles r ON re.role_id = r.id  
+WHERE r.role_name LIKE '% QA engineer';
+  
+SELECT round(max(s.monthly_salary), 2) AS max_QA_salary
+FROM salary s 
+  JOIN employee_salary es ON s.id = es.salary_id 
+  JOIN roles_employee re ON es.employee_id = re.employee_id 
+  JOIN roles r ON re.role_id = r.id  
+WHERE r.role_name LIKE '% QA engineer';
+  
+SELECT COUNT(role_name) AS total_QA 
+FROM roles r 
+  JOIN roles_employee re ON r.id = re.role_id 
+WHERE r.role_name LIKE '% QA engineer';
+ 		
+SELECT COUNT(role_name) AS total_Middle
+FROM roles r 
+  JOIN roles_employee re ON r.id = re.role_id 
+WHERE r.role_name LIKE 'Middle %';
+
+SELECT COUNT(role_name) AS summary_developer 
+FROM roles r 
+  JOIN roles_employee re ON r.id = re.role_id 
+WHERE r.role_name LIKE '% developer';
+
+SELECT sum(s.monthly_salary) AS summary_salary_developer 
+FROM roles r 
+  JOIN roles_employee re ON r.id = re.role_id 
+  JOIN employee_salary es ON re.employee_id = es.employee_id 
+  JOIN salary s ON es.salary_id = s.id 
+WHERE r.role_name LIKE '% developer';
+
+SELECT e.employee_name, r.role_name, s.monthly_salary 
+FROM roles r 
+  JOIN roles_employee re ON r.id = re.role_id 
+  JOIN employees e ON re.employee_id = e.id 
+  JOIN employee_salary es ON re.employee_id = es.employee_id 
+  JOIN salary s ON es.salary_id = s.id 
+ORDER BY s.monthly_salary;
+
+SELECT e.employee_name, r.role_name, s.monthly_salary 
+FROM roles r 
+  JOIN roles_employee re ON r.id = re.role_id 
+  JOIN employees e ON re.employee_id = e.id 
+  JOIN employee_salary es ON re.employee_id = es.employee_id 
+  JOIN salary s ON es.salary_id = s.id 
+WHERE s.monthly_salary BETWEEN 1700 AND 2300
+ORDER BY s.monthly_salary;
+
+SELECT e.employee_name, r.role_name, s.monthly_salary 
+FROM roles r 
+  JOIN roles_employee re ON r.id = re.role_id 
+  JOIN employees e ON re.employee_id = e.id 
+  JOIN employee_salary es ON re.employee_id = es.employee_id 
+  JOIN salary s ON es.salary_id = s.id 
+WHERE s.monthly_salary < 2300
+ORDER BY s.monthly_salary;
+  
+SELECT e.employee_name, r.role_name, s.monthly_salary 
+FROM roles r 
+  JOIN roles_employee re ON r.id = re.role_id 
+  JOIN employees e ON re.employee_id = e.id 
+  JOIN employee_salary es ON re.employee_id = es.employee_id 
+  JOIN salary s ON es.salary_id = s.id 
+WHERE s.monthly_salary IN (1100, 1500, 2000)
+ORDER BY s.monthly_salary;
