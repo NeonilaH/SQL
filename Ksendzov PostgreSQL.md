@@ -2,6 +2,7 @@
 2. [Homework Part 2 - SELECT, JOIN](#2)
 
 ### **1. Homework Part 1 -  CREATE TABLE, INSERT  INTO, ALTER TABLE**<a name="1"><a>
+```sql
 CREATE TABLE employees77(
 	id SERIAL PRIMARY KEY,
 	employee_name VARCHAR(50) NOT NULL);
@@ -225,8 +226,10 @@ VALUES (7, 2),
  	   (38, 9),
  	   (39, 10),
  	   (40, 11);
-
+```
+	
 ### **2. Homework Part 2 - SELECT, JOIN**<a name="2"><a>
+```sql	
 SELECT e.employee_name, s.monthly_salary 
 FROM employees e 
   JOIN employee_salary es ON e.id = es.employee_id 
@@ -456,3 +459,4 @@ FROM roles r
   JOIN salary s ON es.salary_id = s.id 
 WHERE s.monthly_salary IN (1100, 1500, 2000)
 ORDER BY s.monthly_salary;
+```
