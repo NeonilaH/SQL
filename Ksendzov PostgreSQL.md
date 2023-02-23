@@ -1,7 +1,7 @@
 1. [Homework Part 1 -  CREATE TABLE, INSERT  INTO, ALTER TABLE](#1)
 2. [Homework Part 2 - SELECT, JOIN](#2)
 
-### **1. Homework Part 1 **<a name="1"><a>
+### **1. Homework Part 1**<a name="1"><a>
 ```sql
 CREATE TABLE employees77(
 	id SERIAL PRIMARY KEY,
